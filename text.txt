@@ -1,0 +1,15 @@
+1 Mac
+source env/bin/activate
+deactivate
+
+2 Windows
+./env/Scripts/Activate
+deactivate
+
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+1 first you can create apps folder than app folder named <app_name>
+2 python3 manage.py startapp <app_name> ./apps/<app_name>
