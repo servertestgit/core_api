@@ -33,6 +33,7 @@ APPS = [
     'apps.users',
     'apps.authentication',
     'apps.general',
+    'apps.video',
 ]
 
 THIRD_PARTY_APPS = [
