@@ -15,3 +15,5 @@ python manage.py createsuperuser
 
 1 first you can create apps folder than app folder named <app_name>
 2 python manage.py startapp <app_name> ./apps/<app_name>
+
+test
