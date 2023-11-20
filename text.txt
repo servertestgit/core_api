@@ -17,3 +17,4 @@ python manage.py createsuperuser
 2 python manage.py startapp <app_name> ./apps/<app_name>
 
 test
+test2
