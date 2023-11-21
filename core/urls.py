@@ -7,5 +7,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("api/register/", include('apps.users.urls')),
     path("api/auth/", include('apps.authentication.urls')),
+    path("api/videos/", include('apps.video.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

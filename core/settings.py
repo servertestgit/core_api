@@ -123,15 +123,16 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_UPLOAD_PATH = "/media/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+# STATIC
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATIC_ROOT = str(BASE_DIR / "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [str(BASE_DIR / "static")]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/dist/assets')
-]
+
+# MEDIA
+MEDIA_ROOT = str(BASE_DIR / "media")
+MEDIA_URL = "/media/"
 
 
 REST_FRAMEWORK = {

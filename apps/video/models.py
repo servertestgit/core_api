@@ -1,6 +1,7 @@
 from django.db import models
 from apps.users.models import User
-# Create your models here.
+from django.conf import settings
+domain = settings.DOMAIN
 
 
 class ModulClass(models.Model):
@@ -14,7 +15,7 @@ class ModulClass(models.Model):
     class Meta:
         verbose_name = 'Modul'
         verbose_name_plural = 'Moduls'
-        ordering = ('-created_at',)
+        ordering = ('created_at',)
 
 
 class VideoApp(models.Model):
@@ -22,8 +23,13 @@ class VideoApp(models.Model):
     name = models.CharField(max_length=200)
     video = models.FileField(upload_to='videos', blank=True)
     description = models.TextField(blank=True)
-    comment = models.ForeignKey('Comment', on_delete=models.CASCADE)
+    comment = models.ForeignKey(
+        'Comment', on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_thumbnail(self):
+        if self.video:
+            return f"http://{settings.DOMAIN}{self.video.url}"
 
     def __str__(self):
         return f"{self.modul} - {self.name}"
@@ -31,7 +37,7 @@ class VideoApp(models.Model):
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
-        ordering = ('created_at')
+        ordering = ('created_at',)
 
 
 class Comment(models.Model):
