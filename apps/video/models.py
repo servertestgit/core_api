@@ -23,8 +23,7 @@ class VideoApp(models.Model):
     name = models.CharField(max_length=200)
     video = models.FileField(upload_to='videos', blank=True)
     description = models.TextField(blank=True)
-    comment = models.ForeignKey(
-        'Comment', on_delete=models.CASCADE, blank=True, null=True)
+    comment = models.ManyToManyField('Comment', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_thumbnail(self):
