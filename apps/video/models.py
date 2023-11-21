@@ -2,6 +2,7 @@ from django.db import models
 from apps.users.models import User
 # Create your models here.
 
+
 class ModulClass(models.Model):
     name = models.CharField(max_length=250, unique=True)
     all_videos = models.IntegerField(default=0, blank=True)
@@ -14,6 +15,7 @@ class ModulClass(models.Model):
         verbose_name = 'Modul'
         verbose_name_plural = 'Moduls'
         ordering = ('-created_at',)
+
 
 class VideoApp(models.Model):
     modul = models.ForeignKey(ModulClass, on_delete=models.CASCADE)
@@ -31,7 +33,9 @@ class VideoApp(models.Model):
         verbose_name_plural = 'Videos'
         ordering = ('created_at')
 
+
 class Comment(models.Model):
-    commented_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    commented_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
     comment = models.TextField(blank=True)
     commented_on = models.DateTimeField(auto_now_add=True)
