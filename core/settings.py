@@ -41,8 +41,6 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + APPS + THIRD_PARTY_APPS
@@ -112,16 +110,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'autoParagraph': False
-    }
-}
-
-CKEDITOR_UPLOAD_PATH = "/media/"
 
 # STATIC
 

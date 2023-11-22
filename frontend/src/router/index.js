@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import ShopView from '../views/ShopView.vue'
+import VideoDetail from '../views/VideoDetail.vue'
 
 
 const router = createRouter({
@@ -13,6 +14,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/video/:id',
+      name: 'video-detail',
+      component: VideoDetail
     },
     {
       path: '/login',

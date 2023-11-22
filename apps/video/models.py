@@ -25,10 +25,11 @@ class VideoApp(models.Model):
     description = models.TextField(blank=True)
     comment = models.ManyToManyField('Comment', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    marked_view = models.BooleanField(default=False)
 
     def get_thumbnail(self):
         if self.video:
-            return f"http://{settings.DOMAIN}{self.video.url}"
+            return str(settings.DOMAIN) + str(self.video.url)
 
     def __str__(self):
         return f"{self.modul} - {self.name}"
