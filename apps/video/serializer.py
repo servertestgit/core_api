@@ -24,4 +24,4 @@ class VideoAppSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoApp
         fields = ('id', 'modul', 'name',
-                  'description', 'comment', 'get_thumbnail',)
+                  'description', 'marked_view', 'comment', 'video', 'get_thumbnail',)

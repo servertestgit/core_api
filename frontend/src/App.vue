@@ -495,7 +495,7 @@ export default {
 							</RouterLink>
 						</li>
 						<li>
-							<RouterLink v-if="this.$route['fullPath'] === '/about'" to="about"
+							<RouterLink v-if="this.$route['fullPath'] === '/about'" to="/about"
 								class="flex items-center p-2 text-base text-gray-300 bg-gray-600 font-semibold rounded-full group">
 								<svg class="ms-3 w-4 h-4 text-gray-300 transition duration-75" aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -504,7 +504,7 @@ export default {
 								</svg>
 								<span class="flex-1 ml-3 whitespace-nowrap">Wallet</span>
 							</RouterLink>
-							<RouterLink v-else to="about"
+							<RouterLink v-else to="/about"
 								class="flex items-center p-2 text-base text-gray-300 hover:bg-gray-600 font-semibold rounded-full group">
 								<svg class="ms-3 w-4 h-4 text-gray-300 transition duration-75" aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -527,7 +527,7 @@ export default {
 							</RouterLink>
 						</li>
 						<li>
-							<RouterLink v-if="this.$route['fullPath'] === '/shop'" to="shop"
+							<RouterLink v-if="this.$route['fullPath'] === '/shop'" to="/shop"
 								class="flex items-center p-2 text-base text-gray-300 bg-gray-600 font-semibold rounded-full group">
 								<svg class="ms-3 w-4 h-4 text-gray-300 transition duration-75" aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -536,7 +536,7 @@ export default {
 								</svg>
 								<span class="flex-1 ml-3 whitespace-nowrap">Shop</span>
 							</RouterLink>
-							<RouterLink v-else to="shop"
+							<RouterLink v-else to="/shop"
 								class="flex items-center p-2 text-base text-gray-300 hover:bg-gray-600 font-semibold rounded-full group">
 								<svg class="ms-3 w-4 h-4 text-gray-300 transition duration-75" aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -547,13 +547,13 @@ export default {
 							</RouterLink>
 						</li>
 						<li>
-							<RouterLink v-if="this.$route['fullPath'] === '/profile'" to="profile"
+							<RouterLink v-if="this.$route['fullPath'] === '/profile'" to="/profile"
 								class="flex items-center p-2 text-base text-gray-300 bg-gray-600 font-semibold rounded-full group">
 								<img class="w-6 h-6 rounded-full ms-2 transition duration-75" :src="userStore.user.avatar"
 									alt="user photo" />
 								<span class="flex-1 ml-3 whitespace-nowrap">Profile</span>
 							</RouterLink>
-							<RouterLink v-else to="profile"
+							<RouterLink v-else to="/profile"
 								class="flex items-center p-2 text-base text-gray-300 hover:bg-gray-600 font-semibold rounded-full group">
 								<img class="w-6 h-6 rounded-full ms-2 transition duration-75" :src="userStore.user.avatar"
 									alt="user photo" />
