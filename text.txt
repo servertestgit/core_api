@@ -19,3 +19,22 @@ python manage.py createsuperuser
 
 {"username":"874354497","first_name":"first_name", "last_name":"last_name","password":"fjlJGahs8734hjdf923HGds87432kjdsKJh"}
 
+
+
+# for deployment
+
+sudo apt-get update
+
+sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
+
+sudo -H pip3 install --upgrade pip
+
+sudo -H pip3 install virtualenv
+
+mkdir ~/myproject
+cd ~/myproject
+
+virtualenv env
+
+source env/bin/activate
+
