@@ -90,12 +90,42 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
+# database setup
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+POSTGRES_DB = os.environ.get("POSTGRES_DB")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+POSTGRES_USER = os.environ.get("POSTGRES_USER")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+
+
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
+
+
+if POSTGRES_READY:
+    DATABASES = {
+        "default": {
+            'ENGINE': 'django.db.backends.postgresql',
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -122,19 +152,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 # STATIC
-
-# STATIC_ROOT = str(BASE_DIR / "staticfiles")
-# STATIC_URL = "/static/"
-# STATICFILES_DIRS = [str(BASE_DIR / "static")]
-
-
-# # MEDIA
-# MEDIA_ROOT = str(BASE_DIR / "media")
-# MEDIA_URL = "/media/"
-
-DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 2000
-FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 2000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 3000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 3000
 
 
 AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
@@ -144,8 +165,10 @@ AWS_S3_ENDPOINT_URL = AWS_ENDPOINT_URL
 AWS_S3_OBJECT_PARAMETERS = AWS_S3_OBJECT_PARAMETERS
 AWS_LOCATION = AWS_STORAGE_BUCKET_NAME
 AWS_QUERYSTRING_EXPIRE = 5
+
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -156,6 +179,11 @@ MEDIAFILES_DIRS = [
 STATICFILES_STORAGE = STATICFILES_STORAGE
 DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
 
+AWS_ENABLED = True
+AWS_S3_SECURE_URLS = True
+
+
+# rest-faramework
 
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "rest_framework.views.exception_handler",
@@ -181,28 +209,32 @@ SIMPLE_JWT = {
 }
 
 
+# cors
+
+FRONTEND_IP = os.environ.get('FRONTEND_IP')
+FRONTEND = os.environ.get('FRONTEND')
+BACKEND_IP = os.environ.get('BACKEND_IP')
+BACKEND = os.environ.get('BACKEND')
+
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:5173',
-    # 'https://example.com',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:8000',
-    # 'http://132.39.225.220',
+    FRONTEND,
+    FRONTEND_IP,
+    BACKEND,
+    BACKEND_IP,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:5173',
-    # 'https://example.com',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:8000',
-    # 'http://132.39.225.220',
+    FRONTEND,
+    FRONTEND_IP,
+    BACKEND,
+    BACKEND_IP,
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    # 'https://example.com',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:8000',
-    # 'http://132.39.225.220',
+    FRONTEND,
+    FRONTEND_IP,
+    BACKEND,
+    BACKEND_IP,
 ]
 
 

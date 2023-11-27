@@ -29,8 +29,9 @@ magic-filter==1.0.12
 multidict==6.0.4
 mutagen==1.45.1
 oauthlib==3.2.2
-Pillow==8.1.2
-psycopg==3.1.13
+Pillow
+psycopg2-binary
+psycopg
 pycparser==2.21
 PyJWT==2.1.0
 python-dateutil==2.8.2
