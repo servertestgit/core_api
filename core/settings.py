@@ -1,3 +1,13 @@
+from .cdn.conf import (
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY,
+    AWS_S3_SIGNATURE_VERSION,
+    AWS_STORAGE_BUCKET_NAME,
+    AWS_ENDPOINT_URL,
+    AWS_S3_OBJECT_PARAMETERS,
+    DEFAULT_FILE_STORAGE,
+    STATICFILES_STORAGE,
+)
 from pathlib import Path
 import os
 import environ
@@ -12,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 DOMAIN = os.environ.get('DOMAIN')
 
@@ -41,6 +51,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'storages',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + APPS + THIRD_PARTY_APPS
@@ -113,14 +124,37 @@ USE_TZ = True
 
 # STATIC
 
-STATIC_ROOT = str(BASE_DIR / "staticfiles")
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(BASE_DIR / "static")]
+# STATIC_ROOT = str(BASE_DIR / "staticfiles")
+# STATIC_URL = "/static/"
+# STATICFILES_DIRS = [str(BASE_DIR / "static")]
 
 
-# MEDIA
-MEDIA_ROOT = str(BASE_DIR / "media")
-MEDIA_URL = "/media/"
+# # MEDIA
+# MEDIA_ROOT = str(BASE_DIR / "media")
+# MEDIA_URL = "/media/"
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 2000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 2000
+
+
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+AWS_S3_ENDPOINT_URL = AWS_ENDPOINT_URL
+AWS_S3_OBJECT_PARAMETERS = AWS_S3_OBJECT_PARAMETERS
+AWS_LOCATION = AWS_STORAGE_BUCKET_NAME
+AWS_QUERYSTRING_EXPIRE = 5
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATICFILES_STORAGE = STATICFILES_STORAGE
+DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
 
 
 REST_FRAMEWORK = {
@@ -149,26 +183,26 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:5173',
     # 'https://example.com',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:8000',
+    # 'http://132.39.225.220',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:5173',
     # 'https://example.com',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:8000',
+    # 'http://132.39.225.220',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:5173',
     # 'https://example.com',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:8000',
+    # 'http://132.39.225.220',
 ]
 
 
