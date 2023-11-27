@@ -1,6 +1,5 @@
 from django.contrib.auth.models import BaseUserManager
 from django.db import transaction, models
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
 
@@ -39,7 +38,7 @@ class User(AbstractUser):
 
     def avatar(self):
         if self.img:
-            return 'http://'+settings.DOMAIN + self.img.url
+            return str(self.img.url)
         else:
             return 'https://picsum.photos/200/200'
 

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./staticfiles:/code/staticfiles
+      - ./mediafiles:/code/mediafiles
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./staticfiles:/code/staticfiles
+      - ./mediafiles:/code/mediafiles
+    depends_on:
+      - django
+
+  bot:
+    container_name: bot
+    command: python3 bot/app.py
+    restart: always
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+
+volumes:
+  static:
