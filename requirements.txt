@@ -50,3 +50,4 @@ whitenoise==5.3.0
 yarl==1.9.3
 django-storages 
 boto3
+environs
