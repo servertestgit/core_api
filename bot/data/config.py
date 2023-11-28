@@ -1,3 +1,9 @@
-BOT_TOKEN = '6978089503:AAGJttPgaON_0enW65nC6namrzRnXl6Mbb0'
-ADMINS = [874354497]
-ADDRES = 'https://noxonfx.net/'
+from environs import Env
+
+env = Env()
+env.read_env()
+
+BOT_TOKEN = env.str("BOT_TOKEN")
+ADMINS = env.list("ADMINS")
+ADDRES = env.str("ADDRES")
+IP = env.str("ip")
